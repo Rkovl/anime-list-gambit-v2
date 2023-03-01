@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
+import React,{useEffect, useSelector} from 'react';
+import {useDispatch } from 'react-redux';
 
-function App() {
+import {mainActions} from './slice/MainSlice';
+
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Row from 'react-bootstrap/Row';
+import Button from 'react-bootstrap/Button';
+
+export const App = () => {
+
+  const dispatch = useDispatch()
+
+  let bestScore = useSelector((state)=> state.main.bestScore)
+  const animeData = useSelector((state)=> state.main.animeData)
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      
     </div>
-  );
+  )
 }
 
-export default App;
