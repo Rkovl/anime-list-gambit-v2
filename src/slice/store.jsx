@@ -13,13 +13,17 @@ import {
 
 import storage from 'redux-persist/lib/storage'
 
+
+
 const persistConfig = {
   key: 'root',
   version: 1,
   storage,
 }
 
-const persistMainSlice = persistReducer(persistConfig, RestrictSlice)
+const persistMainSlice = persistReducer(persistConfig, MainSlice)
+
+
 
 export default configureStore({
   reducer: {
