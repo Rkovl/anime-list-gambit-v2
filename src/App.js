@@ -62,7 +62,7 @@ const App = () => {
     }
     
 
-    if(animeData.length <= 0){
+    if(animeData.length <= 0 || animeData[0]===null){
       gatherData()
       .then(()=>{
         setLeft(animeData[Number(randomAnimeSelector())].node)
