@@ -31,14 +31,14 @@ const App = () => {
       try {
         console.log("trying gatherData Function")
         let apiUrl = [
-          `/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?ranking_type=tv&limit=500&fields=synopsis,start_date,mean`,
-          `/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=500&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
-          `/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=1000&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
-          `/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=1500&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
-          `/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=2000&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
-          `/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=2500&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
-          `/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=3000&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
-          `/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=3500&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`
+          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=api.myanimelist.net/v2/anime/ranking?ranking_type=tv&limit=500&fields=synopsis,start_date,mean`,
+          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=api.myanimelist.net/v2/anime/ranking?offset=500&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
+          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=api.myanimelist.net/v2/anime/ranking?offset=1000&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
+          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=api.myanimelist.net/v2/anime/ranking?offset=1500&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
+          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=api.myanimelist.net/v2/anime/ranking?offset=2000&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
+          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=api.myanimelist.net/v2/anime/ranking?offset=2500&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
+          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=api.myanimelist.net/v2/anime/ranking?offset=3000&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
+          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=api.myanimelist.net/v2/anime/ranking?offset=3500&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`
         ];
         let dataArr = [];
         for(const url of apiUrl) {
@@ -106,7 +106,7 @@ const App = () => {
   }
 
   const loseReset = ()=>{
-
+    
     if(score> bestScore){
       dispatch(mainActions.displayBest(score))
     }
