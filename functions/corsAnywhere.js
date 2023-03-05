@@ -14,8 +14,25 @@
 //     removeHeaders: ['cookie', 'cookie2']
 // }).handler;
 
+// exports.handler = async function(event, context) {
+//   return{
+//     statusCode: 200,
+//   }
+// }
+
+const axios = require('axios');
+
 exports.handler = async function(event, context) {
-  return{
+  const url = event.queryStringParameters.url;
+  const response = await axios.get(url);
+  const data = response.data;
+
+  return {
     statusCode: 200,
-  }
-}
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+    body: JSON.stringify(data),
+  };
+};
