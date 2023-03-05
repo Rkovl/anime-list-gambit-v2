@@ -29,8 +29,7 @@ exports.handler = async (event) => {
   const responseHeaders = {
     'Access-Control-Allow-Origin': '*',
     'Access-Control-Allow-Headers': 'Content-Type',
-    'X-MAL-CLIENT-ID': 'e1a909433d30ddee822fc956e58d7444',
-    ...headers,
+    'X-MAL-CLIENT-ID': 'e1a909433d30ddee822fc956e58d7444'
   };
 
   return {
