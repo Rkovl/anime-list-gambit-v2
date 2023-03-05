@@ -1,5 +1,5 @@
-import React,{useEffect, useState} from 'react';
 import {useDispatch, useSelector} from 'react-redux';
+import React,{useEffect, useState} from 'react';
 import axios from 'axios';
 
 import {mainActions} from './slice/MainSlice'
@@ -10,6 +10,7 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+
 
 const App = () => {
 
@@ -84,7 +85,7 @@ const App = () => {
     return () => {
       clearInterval(dataInterval)
     };
-
+    // eslint-disable-next-line
   }, []);
 
 
