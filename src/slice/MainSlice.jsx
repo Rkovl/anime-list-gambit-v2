@@ -4,9 +4,7 @@ const mainSlice = createSlice({
     name: 'main',
     initialState: {
         bestScore: 0,
-        animeData: [],
-        animeLeft: [],
-        animeRight: []
+        animeData: []
     },
     reducers: {
         displayBest: (state,action)=>{
