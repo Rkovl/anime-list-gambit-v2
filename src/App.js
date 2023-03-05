@@ -24,8 +24,6 @@ const App = () => {
   const [animeRight, setRight] = useState({});
   const [isLoading, setLoading] = useState(false);
 
-  const xMalID = process.env.X_MAL_ID
-
   useEffect(() => {
     
     const gatherData = async ()=> {
