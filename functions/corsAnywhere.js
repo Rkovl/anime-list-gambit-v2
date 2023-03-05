@@ -22,17 +22,20 @@
 
 const axios = require('axios');
 
-exports.handler = async function(event, context) {
-  const url = event.queryStringParameters.url;
+exports.handler = async (event) => {
+  const { url } = event.queryStringParameters;
   const response = await axios.get(url);
-  const data = response.data;
+  const { data, status, headers } = response;
+  const responseHeaders = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Headers': 'Content-Type',
+    'X-MAL-CLIENT-ID': 'e1a909433d30ddee822fc956e58d7444',
+    ...headers,
+  };
 
   return {
-    statusCode: 200,
-    headers: {
-      'Access-Control-Allow-Origin': '*',
-      'Access-Control-Allow-Headers': 'Content-Type',
-    },
+    statusCode: status,
+    headers: responseHeaders,
     body: JSON.stringify(data),
   };
 };
