@@ -24,8 +24,12 @@ main{
 }
 
 .maxheight{
-  max-height: 50vh;
-  overflow: hidden;
+  /* max-height: 50vh; */
+  /* overflow: hidden; */
+}
+
+.toastimg{
+  max-width: 50px;
 }
 
   

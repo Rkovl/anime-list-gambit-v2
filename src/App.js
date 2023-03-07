@@ -10,6 +10,8 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
+import Toast from 'react-bootstrap/Toast';
+import ToastContainer from 'react-bootstrap/ToastContainer';
 
 import Anime from './data/data'
 
@@ -18,17 +20,26 @@ const App = () => {
 
   const dispatch = useDispatch();
 
+  const randomAnimeSelector = ()=> {
+    let animeSelectNum = Math.floor(Math.random() * 4000)
+    console.log(animeSelectNum, "animeNumber")
+    return animeSelectNum;
+  }
+
+
   const bestScore = useSelector((state)=> state.main.bestScore);
   // const animeData = useSelector((state)=> state.main.animeData);
   const animeData = Anime;
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
   const [skip, setSkip] = useState(3);
-  const [animeLeft, setLeft] = useState({});
-  const [animeRight, setRight] = useState({});
+  const [animeLeft, setLeft] = useState(animeData[Number(randomAnimeSelector())].node);
+  const [animeRight, setRight] = useState(animeData[Number(randomAnimeSelector())].node);
   const [isLoading, setLoading] = useState(false);
+  const [showA, setShowA] = useState(false);
+  const [showB, setShowB] = useState(false);
 
-console.log('HELLO???')
+
 
   useEffect(() => {
     
@@ -115,14 +126,9 @@ console.log('HELLO???')
 
 
 
-  const randomAnimeSelector = ()=> {
-    let animeSelectNum = Math.floor(Math.random() * 4000)
-    console.log(animeSelectNum, "animeNumber")
-    return animeSelectNum;
-  }
 
   const simulateNetworkRequest = ()=> {
-    return new Promise((resolve) => setTimeout(resolve, 2000));
+    return new Promise((resolve) => setTimeout(resolve, 1500));
   }
 
   const newDisplay = ()=> {
@@ -147,16 +153,19 @@ console.log('HELLO???')
     switch(button){
       case 'rightRate':
         console.log('case right rate')
-        if(animeRight.mean>animeLeft.mean){
+        if(animeRight.rank<animeLeft.rank){
           setScore(score+1)
+          toggleShowA()
         }
         else{
           if(lives > 1){
             setLives(lives-1)
+            toggleShowB()
           }
           else{
             loseReset()
             console.log('you die')
+            toggleShowB()
           }
         }
         newDisplay()
@@ -165,21 +174,24 @@ console.log('HELLO???')
         // console.log('case right release',animeRight.start_date.replaceAll('-',''),Number(animeLeft.start_date.replaceAll('-','')))
         if(Number(animeRight.start_date.replaceAll('-',''))<Number(animeLeft.start_date.replaceAll('-',''))){
           setScore(score+1)
+          toggleShowA()
         }
         else{
           if(lives > 1){
             setLives(lives-1)
+            toggleShowB()
           }
           else{
             loseReset()
             console.log('you die')
+            toggleShowB()
           }
         }
         newDisplay()
         break;
       case 'leftRate':
         console.log('case left rate')
-        if(animeLeft.mean>animeRight.mean){
+        if(animeLeft.rank<animeRight.rank){
           setScore(score+1)
         }
         else{
@@ -228,9 +240,53 @@ console.log('HELLO???')
     });
   }
 
+  const toggleShowA = () => {
+    setShowA(!showA);
+    simulateNetworkRequest().then(() => {
+      setShowA(false);
+    });
+  }
+  const toggleShowB = () => {
+    setShowB(!showB);
+    simulateNetworkRequest().then(() => {
+      setShowB(false);
+    });
+  }
 
   return (
     <main >
+
+      <ToastContainer>
+        <Toast show={showA} onClose={toggleShowA}>
+          <Toast.Header>
+
+            <strong className="me-auto">Correct!</strong>
+            
+          </Toast.Header>
+          <Toast.Body> 
+            <img
+                        src="/yes.jpg"
+                        className="rounded me-2 toastimg"
+                        alt=""
+            />
+            Woohoo, you're winning!</Toast.Body>
+        </Toast>
+        <Toast show={showB} onClose={toggleShowB}>
+          <Toast.Header>
+
+            <strong className="me-auto">Wrong!</strong>
+            
+          </Toast.Header>
+          
+          <Toast.Body>
+            <img
+                          src="/no.jpg"
+                          className="rounded me-2 toastimg"
+                          alt=""
+            />
+          You're loseing!</Toast.Body>
+        </Toast>
+      </ToastContainer>
 
       <Navbar bg="dark" variant="dark" className='border-bottom border-danger'>
         <Container>
@@ -264,7 +320,7 @@ console.log('HELLO???')
                 <Card.Body>
                   <blockquote className="blockquote mb-0">
                     <p className='h4'>
-                      {animeLeft.synopsis}
+                      {animeLeft.synopsis.slice(0,450)}...
                     </p>
                   </blockquote>
                 </Card.Body>
@@ -277,7 +333,7 @@ console.log('HELLO???')
                 <Card.Body>
                   <blockquote className="blockquote mb-0">
                     <p className='h4'>
-                      {animeRight.synopsis}
+                      {animeRight.synopsis.slice(0,450)}...
                     </p>
                   </blockquote>
                 </Card.Body>
