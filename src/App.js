@@ -25,20 +25,26 @@ const App = () => {
   const [animeRight, setRight] = useState({});
   const [isLoading, setLoading] = useState(false);
 
+console.log('HELLO???')
+
   useEffect(() => {
     
+    console.log("IS THE USE EFFECT WORKINGF")
+    
+
+
     const gatherData = async ()=> {
       try {
         console.log("trying gatherData Function")
         let apiUrl = [
-          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?ranking_type=tv&limit=500&fields=synopsis,start_date,mean`,
-          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=500&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
-          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=1000&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
-          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=1500&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
-          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=2000&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
-          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=2500&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
-          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=3000&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`,
-          `https://animelistgambit.netlify.app/.netlify/functions/corsAnywhere?url=https://api.myanimelist.net/v2/anime/ranking?offset=3500&ranking_type=tv&limit=500&fields=synopsis%2Cstart_date%2Cmean`
+          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?ranking_type=tv%26limit=500%26fields=synopsis,start_date,mean`,
+          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean`,
+          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=1000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean`,
+          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=1500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean`,
+          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=2000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean`,
+          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=2500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean`,
+          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=3000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean`,
+          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=3500%26ranking_type=tv%26limit=500%26fields=synopsis,start_date,mean`
         ];
         let dataArr = [];
         for(const url of apiUrl) {
@@ -54,6 +60,21 @@ const App = () => {
         }
         console.log(dataArr, 'dataArr')
         dispatch(mainActions.addData(dataArr))
+// console.log('before')
+//         axios.get('http://localhost:8888/.netlify/functions/helloworld?url=/anime/1',{
+//                       headers: {
+//               'X-MAL-CLIENT-ID': 'e1a909433d30ddee822fc956e58d7444'
+//             },
+//         })
+//         .then(response => console.log(response,'response data'))
+//         .catch(error => console.error('error'));
+// console.log('after')
+        // const response = async ()=> {
+        //   await fetch('/.netlify/functions/corsAnywhere')
+        //   .then(response => response.json())
+        // }
+        // console.log(response())
+
       }
       catch (error) {
         console.log(error);
@@ -61,6 +82,7 @@ const App = () => {
       }
     }
     
+    gatherData()
 
     if(animeData.length <= 0 || animeData[0]===null){
       gatherData()
