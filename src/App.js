@@ -11,13 +11,16 @@ import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
 
+import Anime from './data/data'
+
 
 const App = () => {
 
   const dispatch = useDispatch();
 
   const bestScore = useSelector((state)=> state.main.bestScore);
-  const animeData = useSelector((state)=> state.main.animeData);
+  // const animeData = useSelector((state)=> state.main.animeData);
+  const [animeData, setAnimeData] = useState(Anime);
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
   const [skip, setSkip] = useState(3);
@@ -30,82 +33,82 @@ console.log('HELLO???')
   useEffect(() => {
     
     console.log("IS THE USE EFFECT WORKINGF")
+    console.log(Anime, 'anime')
+    setLeft(animeData[Number(randomAnimeSelector())].node)
+    setRight(animeData[Number(randomAnimeSelector())].node)
     
 
-
-    const gatherData = async ()=> {
-      try {
-        console.log("trying gatherData Function")
-        let apiUrl = [
-          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?ranking_type=tv%26limit=500%26fields=synopsis,start_date,mean`,
-          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean`,
-          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=1000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean`,
-          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=1500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean`,
-          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=2000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean`,
-          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=2500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean`,
-          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=3000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean`,
-          `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=3500%26ranking_type=tv%26limit=500%26fields=synopsis,start_date,mean`
-        ];
-        let dataArr = [];
-        for(const url of apiUrl) {
-          const response = await axios.get(url, {
-            headers: {
-              'X-MAL-CLIENT-ID': 'e1a909433d30ddee822fc956e58d7444'
-            },
-          });
-          console.log(response, "response")
-          // const data = await response.json();
-          // console.log(data,"data")
-          dataArr.push(response.data.data);
-        }
-        console.log(dataArr, 'dataArr')
-        dispatch(mainActions.addData(dataArr))
-// console.log('before')
-//         axios.get('http://localhost:8888/.netlify/functions/helloworld?url=/anime/1',{
-//                       headers: {
+//     const gatherData = async ()=> {
+//       try {
+//         console.log("trying gatherData Function")
+//         let apiUrl = [
+//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?ranking_type=tv%26limit=500%26fields=synopsis,start_date,mean,rank`,
+//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
+//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=1000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
+//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=1500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
+//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=2000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
+//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=2500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
+//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=3000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
+//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=3500%26ranking_type=tv%26limit=500%26fields=synopsis,start_date,mean,rank`
+//         ];
+//         let dataArr = [];
+//         for(const url of apiUrl) {
+//           const response = await axios.get(url, {
+//             headers: {
 //               'X-MAL-CLIENT-ID': 'e1a909433d30ddee822fc956e58d7444'
 //             },
-//         })
-//         .then(response => console.log(response,'response data'))
-//         .catch(error => console.error('error'));
-// console.log('after')
-        // const response = async ()=> {
-        //   await fetch('/.netlify/functions/corsAnywhere')
-        //   .then(response => response.json())
-        // }
-        // console.log(response())
+//           });
+//           console.log(response, "response")
+//           // const data = await response.json();
+//           // console.log(data,"data")
+//           dataArr.push(response.data.data);
+//         }
+//         console.log(dataArr, 'dataArr')
+//         dispatch(mainActions.addData(dataArr))
+// // console.log('before')
+// //         axios.get('http://localhost:8888/.netlify/functions/helloworld?url=/anime/1',{
+// //                       headers: {
+// //               'X-MAL-CLIENT-ID': 'e1a909433d30ddee822fc956e58d7444'
+// //             },
+// //         })
+// //         .then(response => console.log(response,'response data'))
+// //         .catch(error => console.error('error'));
+// // console.log('after')
+//         // const response = async ()=> {
+//         //   await fetch('/.netlify/functions/corsAnywhere')
+//         //   .then(response => response.json())
+//         // }
+//         // console.log(response())
 
-      }
-      catch (error) {
-        console.log(error);
-        throw error;
-      }
-    }
+//       }
+//       catch (error) {
+//         console.log(error);
+//         throw error;
+//       }
+//     }
     
-    gatherData()
+//     gatherData()
 
-    if(animeData.length <= 0 || animeData[0]===null){
-      gatherData()
-      .then(()=>{
-        setLeft(animeData[Number(randomAnimeSelector())].node)
-        setRight(animeData[Number(randomAnimeSelector())].node)
-        console.log(animeData, animeLeft, animeRight)
-      })
-    }
-    else{
-      setLeft(animeData[Number(randomAnimeSelector())].node)
-      setRight(animeData[Number(randomAnimeSelector())].node)
-      console.log(animeData, animeLeft, animeRight)
-    }
+    // if(animeData.length <= 0 || animeData[0]===null){
+    //   dispatch(mainActions.addData(Anime))
+
+    //     console.log(animeData, animeLeft, animeRight)
+      
+    // }
+    // else{
+    //   setLeft(animeData[Number(randomAnimeSelector())].node)
+    //   setRight(animeData[Number(randomAnimeSelector())].node)
+    //   console.log(animeData, animeLeft, animeRight)
+    // }
 
 
-    const dataInterval = setInterval(() => {
-      gatherData()
-    }, 1728000000)
+    // const dataInterval = setInterval(() => {
+    //   dispatch(mainActions.addData(Anime))
+    // }, 1728000000)
 
 
     return () => {
-      clearInterval(dataInterval)
+
     };
     // eslint-disable-next-line
   }, []);
