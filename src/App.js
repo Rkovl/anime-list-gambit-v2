@@ -268,7 +268,7 @@ const App = () => {
   return (
     <main >
 
-      <ToastContainer>
+      <ToastContainer className='fixed-top'>
         <Toast show={showA} >
           <Toast.Header>
 
