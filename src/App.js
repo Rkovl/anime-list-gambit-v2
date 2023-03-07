@@ -22,7 +22,7 @@ const App = () => {
 
   const randomAnimeSelector = ()=> {
     let animeSelectNum = Math.floor(Math.random() * 4000)
-    console.log(animeSelectNum, "animeNumber")
+    // console.log(animeSelectNum, "animeNumber")
     return animeSelectNum;
   }
 
@@ -33,8 +33,8 @@ const App = () => {
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
   const [skip, setSkip] = useState(3);
-  const [animeLeft, setLeft] = useState(animeData[Number(randomAnimeSelector())].node);
-  const [animeRight, setRight] = useState(animeData[Number(randomAnimeSelector())].node);
+  const [animeLeft, setLeft] = useState();
+  const [animeRight, setRight] = useState();
   const [isLoading, setLoading] = useState(false);
   const [showA, setShowA] = useState(false);
   const [showB, setShowB] = useState(false);
@@ -43,79 +43,79 @@ const App = () => {
 
   useEffect(() => {
     
-    console.log("IS THE USE EFFECT WORKINGF")
-    console.log(Anime, 'anime')
+    console.log("why is the mal api the worst thing in the world?")
+//     // console.log(Anime, 'anime')
     setLeft(animeData[Number(randomAnimeSelector())].node)
     setRight(animeData[Number(randomAnimeSelector())].node)
     
 
-//     const gatherData = async ()=> {
-//       try {
-//         console.log("trying gatherData Function")
-//         let apiUrl = [
-//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?ranking_type=tv%26limit=500%26fields=synopsis,start_date,mean,rank`,
-//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
-//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=1000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
-//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=1500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
-//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=2000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
-//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=2500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
-//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=3000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
-//           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=3500%26ranking_type=tv%26limit=500%26fields=synopsis,start_date,mean,rank`
-//         ];
-//         let dataArr = [];
-//         for(const url of apiUrl) {
-//           const response = await axios.get(url, {
-//             headers: {
-//               'X-MAL-CLIENT-ID': 'e1a909433d30ddee822fc956e58d7444'
-//             },
-//           });
-//           console.log(response, "response")
-//           // const data = await response.json();
-//           // console.log(data,"data")
-//           dataArr.push(response.data.data);
-//         }
-//         console.log(dataArr, 'dataArr')
-//         dispatch(mainActions.addData(dataArr))
-// // console.log('before')
-// //         axios.get('http://localhost:8888/.netlify/functions/helloworld?url=/anime/1',{
-// //                       headers: {
+// //     const gatherData = async ()=> {
+// //       try {
+// //         console.log("trying gatherData Function")
+// //         let apiUrl = [
+// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?ranking_type=tv%26limit=500%26fields=synopsis,start_date,mean,rank`,
+// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
+// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=1000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
+// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=1500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
+// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=2000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
+// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=2500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
+// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=3000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
+// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=3500%26ranking_type=tv%26limit=500%26fields=synopsis,start_date,mean,rank`
+// //         ];
+// //         let dataArr = [];
+// //         for(const url of apiUrl) {
+// //           const response = await axios.get(url, {
+// //             headers: {
 // //               'X-MAL-CLIENT-ID': 'e1a909433d30ddee822fc956e58d7444'
 // //             },
-// //         })
-// //         .then(response => console.log(response,'response data'))
-// //         .catch(error => console.error('error'));
-// // console.log('after')
-//         // const response = async ()=> {
-//         //   await fetch('/.netlify/functions/corsAnywhere')
-//         //   .then(response => response.json())
-//         // }
-//         // console.log(response())
+// //           });
+// //           console.log(response, "response")
+// //           // const data = await response.json();
+// //           // console.log(data,"data")
+// //           dataArr.push(response.data.data);
+// //         }
+// //         console.log(dataArr, 'dataArr')
+// //         dispatch(mainActions.addData(dataArr))
+// // // console.log('before')
+// // //         axios.get('http://localhost:8888/.netlify/functions/helloworld?url=/anime/1',{
+// // //                       headers: {
+// // //               'X-MAL-CLIENT-ID': 'e1a909433d30ddee822fc956e58d7444'
+// // //             },
+// // //         })
+// // //         .then(response => console.log(response,'response data'))
+// // //         .catch(error => console.error('error'));
+// // // console.log('after')
+// //         // const response = async ()=> {
+// //         //   await fetch('/.netlify/functions/corsAnywhere')
+// //         //   .then(response => response.json())
+// //         // }
+// //         // console.log(response())
 
-//       }
-//       catch (error) {
-//         console.log(error);
-//         throw error;
-//       }
-//     }
+// //       }
+// //       catch (error) {
+// //         console.log(error);
+// //         throw error;
+// //       }
+// //     }
     
-//     gatherData()
+// //     gatherData()
 
-    // if(animeData.length <= 0 || animeData[0]===null){
-    //   dispatch(mainActions.addData(Anime))
+//     // if(animeData.length <= 0 || animeData[0]===null){
+//     //   dispatch(mainActions.addData(Anime))
 
-    //     console.log(animeData, animeLeft, animeRight)
+//     //     console.log(animeData, animeLeft, animeRight)
       
-    // }
-    // else{
-    //   setLeft(animeData[Number(randomAnimeSelector())].node)
-    //   setRight(animeData[Number(randomAnimeSelector())].node)
-    //   console.log(animeData, animeLeft, animeRight)
-    // }
+//     // }
+//     // else{
+//     //   setLeft(animeData[Number(randomAnimeSelector())].node)
+//     //   setRight(animeData[Number(randomAnimeSelector())].node)
+//     //   console.log(animeData, animeLeft, animeRight)
+//     // }
 
 
-    // const dataInterval = setInterval(() => {
-    //   dispatch(mainActions.addData(Anime))
-    // }, 1728000000)
+//     // const dataInterval = setInterval(() => {
+//     //   dispatch(mainActions.addData(Anime))
+//     // }, 1728000000)
 
 
     return () => {
@@ -128,15 +128,18 @@ const App = () => {
 
 
   const simulateNetworkRequest = ()=> {
-    return new Promise((resolve) => setTimeout(resolve, 1500));
+    console.log('in timeout')
+    return new Promise((resolve) => setTimeout(resolve, 5500));
   }
 
   const newDisplay = ()=> {
     setLeft(animeData[Number(randomAnimeSelector())].node)
     setRight(animeData[Number(randomAnimeSelector())].node)
+    console.log(animeLeft, 'left', animeRight, 'right')
   }
 
   const loseReset = ()=>{
+    console.log('lose reset')
     
     if(score> bestScore){
       dispatch(mainActions.displayBest(score))
@@ -149,6 +152,7 @@ const App = () => {
   }
 
   const buttonOnClick = (button)=>{
+    console.log('on button click')
     setLoading(true)
     switch(button){
       case 'rightRate':
@@ -168,7 +172,7 @@ const App = () => {
             toggleShowB()
           }
         }
-        newDisplay()
+        
         break;
       case 'rightRelease':
         // console.log('case right release',animeRight.start_date.replaceAll('-',''),Number(animeLeft.start_date.replaceAll('-','')))
@@ -187,45 +191,51 @@ const App = () => {
             toggleShowB()
           }
         }
-        newDisplay()
+        
         break;
       case 'leftRate':
         console.log('case left rate')
         if(animeLeft.rank<animeRight.rank){
           setScore(score+1)
+          toggleShowA()
         }
         else{
           if(lives > 1){
             setLives(lives-1)
+            toggleShowB()
           }
           else{
             loseReset()
             console.log('you die')
+            toggleShowB()
           }
         }
-        newDisplay()
+        
         break;
       case 'leftRelease':
         console.log('case left release')
         if(Number(animeLeft.start_date.replaceAll('-',''))<Number(animeRight.start_date.replaceAll('-',''))){
           setScore(score+1)
+          toggleShowA()
         }
         else{
           if(lives > 1){
             setLives(lives-1)
+            toggleShowB()
           }
           else{
             loseReset()
             console.log('you die')
+            toggleShowB()
           }
         }
-        newDisplay()
+        
         break;
       case 'skip':
         console.log('skip')
         if(skip>0){
           setSkip(skip-1)
-          newDisplay()
+          
         }
       break;
       default:
@@ -236,28 +246,30 @@ const App = () => {
 
   if (isLoading) {
     simulateNetworkRequest().then(() => {
+      console.log('running')
+      
+      setShowA(false);
+      setShowB(false);
       setLoading(false);
+      newDisplay();
     });
   }
 
   const toggleShowA = () => {
+    console.log('toggleA')
     setShowA(!showA);
-    simulateNetworkRequest().then(() => {
-      setShowA(false);
-    });
   }
   const toggleShowB = () => {
+    console.log('toggleB')
     setShowB(!showB);
-    simulateNetworkRequest().then(() => {
-      setShowB(false);
-    });
   }
 
+  
   return (
     <main >
 
       <ToastContainer>
-        <Toast show={showA} onClose={toggleShowA}>
+        <Toast show={showA} >
           <Toast.Header>
 
             <strong className="me-auto">Correct!</strong>
@@ -271,7 +283,7 @@ const App = () => {
             />
             Woohoo, you're winning!</Toast.Body>
         </Toast>
-        <Toast show={showB} onClose={toggleShowB}>
+        <Toast show={showB} >
           <Toast.Header>
 
             <strong className="me-auto">Wrong!</strong>
@@ -309,7 +321,7 @@ const App = () => {
         </Container>
       </Navbar>
 
-
+      {animeLeft && animeRight ?(
 
       <Container className='h-75 text-center'>
         <Col>
@@ -408,6 +420,9 @@ const App = () => {
           </Row>
         </Col>
       </Container>
+      ) : (
+        <div>Loading...</div>
+      )}
 
     </main>
   )
