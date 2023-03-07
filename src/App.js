@@ -129,7 +129,7 @@ const App = () => {
 
   const simulateNetworkRequest = ()=> {
     console.log('in timeout')
-    return new Promise((resolve) => setTimeout(resolve, 5500));
+    return new Promise((resolve) => setTimeout(resolve, 1500));
   }
 
   const newDisplay = ()=> {
