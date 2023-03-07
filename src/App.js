@@ -1,6 +1,6 @@
 import {useDispatch, useSelector} from 'react-redux';
 import React,{useEffect, useState} from 'react';
-import axios from 'axios';
+// import axios from 'axios';
 
 import {mainActions} from './slice/MainSlice'
 
@@ -20,7 +20,7 @@ const App = () => {
 
   const bestScore = useSelector((state)=> state.main.bestScore);
   // const animeData = useSelector((state)=> state.main.animeData);
-  const [animeData, setAnimeData] = useState(Anime);
+  const animeData = Anime;
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
   const [skip, setSkip] = useState(3);
