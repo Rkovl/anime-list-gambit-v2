@@ -101,7 +101,7 @@ console.log('HELLO???')
 
     const dataInterval = setInterval(() => {
       gatherData()
-    }, 172800000)
+    }, 1728000000)
 
 
     return () => {
