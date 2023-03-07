@@ -25,12 +25,41 @@ main{
 
 .maxheight{
   /* max-height: 50vh; */
-  /* overflow: hidden; */
+  overflow: hidden;
 }
 
 .toastimg{
   max-width: 50px;
 }
 
-  
 
+  
+@media (max-width: 500px){
+  
+  main{
+    height: fit-content;
+  }
+
+  .livesback{
+    color: rgb(24, 26, 26);
+    background-color: rgb(255, 107, 132);
+    padding:  2px;
+    border-color: crimson;
+    border-width: 1px;
+    border-style: solid;
+    
+  }
+
+.mobilehidden{
+  max-width: 0px;
+}
+
+.mobilebutton{
+  font-size: 15px;
+}
+
+.mobilecard{
+  margin-bottom: 150px;
+}
+
+}

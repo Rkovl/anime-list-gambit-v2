@@ -315,7 +315,7 @@ const App = () => {
         <Col>
           <Row xs={12} md={12} className="g-4 p-4">
             <Col className='m-4 text-center h1'>
-              <Card className='bg-dark border border-4 border-danger maxheight'>
+              <Card className='bg-dark border border-4 border-danger maxheight '>
                 <Card.Header>{animeLeft.title}</Card.Header>
                 <Card.Body>
                   <blockquote className="blockquote mb-0">
@@ -328,7 +328,7 @@ const App = () => {
             </Col>
 
             <Col className='m-4 text-center h1'>
-              <Card className='bg-dark border border-4 border-danger maxheight'>
+              <Card className='bg-dark border border-4 border-danger maxheight mobilecard'>
                 <Card.Header>{animeRight.title}</Card.Header>
                 <Card.Body>
                   <blockquote className="blockquote mb-0">
@@ -342,12 +342,13 @@ const App = () => {
           </Row>
 
 
-          <Row className='fixed-bottom pb-5 mb-5'>
-            <Col></Col>
+          <Row className='fixed-bottom pb-1 mb-1 mb-sm-5 pb-sm-5'>
+            <Col className='mobilehidden'></Col>
             <Col>
               <div className="d-grid gap-2">
                 <Button 
                 variant="primary" 
+                className='mobilebutton'
                 size="lg"
                 disabled={isLoading}
                 onClick={!isLoading ? ()=>buttonOnClick('leftRate') : null}>
@@ -357,6 +358,7 @@ const App = () => {
                 <br/><br/>
                 <Button 
                 variant="secondary" 
+                className='mobilebutton'
                 size="lg"
                 disabled={isLoading}
                 onClick={!isLoading ? ()=>buttonOnClick('leftRelease') : null}>
@@ -366,11 +368,12 @@ const App = () => {
             </Col>
 
             <Col>
-              <div className='h3'>
+              <div className='h3 livesback'>
               Lives : {lives} 
               </div><br/>
               <Button 
               variant="primary" 
+              className='mobilebutton'
               size="lg"
               disabled={isLoading}
               onClick={!isLoading ? ()=>buttonOnClick('skip') : null}>
@@ -382,6 +385,7 @@ const App = () => {
               <div className="d-grid gap-2">
                 <Button 
                 variant="primary" 
+                className='mobilebutton'
                 size="lg"
                 disabled={isLoading}
                 onClick={!isLoading ? ()=>buttonOnClick('rightRate') : null}>
@@ -391,6 +395,7 @@ const App = () => {
                 <br/><br/>
                 <Button 
                 variant="secondary" 
+                className='mobilebutton'
                 size="lg"
                 disabled={isLoading}
                 onClick={!isLoading ? ()=>buttonOnClick('rightRelease') : null}>
@@ -399,7 +404,7 @@ const App = () => {
                 </Button>
               </div>
             </Col>
-            <Col></Col>
+            <Col className='mobilehidden'></Col>
           </Row>
         </Col>
       </Container>
