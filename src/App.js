@@ -66,7 +66,7 @@ const App = () => {
 // //         for(const url of apiUrl) {
 // //           const response = await axios.get(url, {
 // //             headers: {
-// //               'X-MAL-CLIENT-ID': 'e1a909433d30ddee822fc956e58d7444'
+// //               'X-MAL-CLIENT-ID': ''
 // //             },
 // //           });
 // //           console.log(response, "response")
@@ -79,7 +79,7 @@ const App = () => {
 // // // console.log('before')
 // // //         axios.get('http://localhost:8888/.netlify/functions/helloworld?url=/anime/1',{
 // // //                       headers: {
-// // //               'X-MAL-CLIENT-ID': 'e1a909433d30ddee822fc956e58d7444'
+// // //               'X-MAL-CLIENT-ID': ''
 // // //             },
 // // //         })
 // // //         .then(response => console.log(response,'response data'))
