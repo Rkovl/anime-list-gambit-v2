@@ -354,7 +354,7 @@ const App = () => {
           </Row>
 
 
-          <Row className='fixed-bottom pb-1 mb-1 mb-sm-5 pb-sm-5'>
+          <Row className='fixed-bottom pb-1 mb-1 mb-sm-5 pb-sm-5 bg-dark border-top border-2 border-danger'>
             <Col className='mobilehidden'></Col>
             <Col>
               <div className="d-grid gap-2">
