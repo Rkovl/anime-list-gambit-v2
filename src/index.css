@@ -1,67 +1,185 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* Colors */
+Colors{
+ color: #000000;
+ color: #ffffff;
+ color: #54d8da;
+ color: #9cddde;
+ color: #cadede;
+ color: #ffb6ba;
+ color: #fdcdcd;
+ color: #fae2e2;
+ color: #ce41b7;
+ color: #38c426;
+ color: #64f538;
+ color: #c01b24;
+ color: #fa2929;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+/* Backround and Defaults */
+main{
+  color: #000000;
+  height: 100vh;
+  border-color: rgb(255, 107, 132);
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  letter-spacing: 0.5px;
+}
+.bg-main-default{
+  background: linear-gradient(145deg, #ffb6ba 50%,#fdcdcd 50%);
+}
+.bg-main-win{
+  background: linear-gradient(145deg, #38c426 50%,#64f538 50%);
+}
+.bg-main-lose{
+  background: linear-gradient(145deg, #c01b24 50%,#fa2929 50%);
+}
+
+.bg-text{
+  color:rgba(0, 0, 0, 0.25);
+  font-size: 35vh;
+  font-weight: 700;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  user-select: none;
+  visibility: hidden;
+}
+
+/* default buttons */
+.bg-button{
+  background-color: #ffffff;
+  color: #ce41b7;
+  border-color: #ce41b7;
+  border-width: 3px;
+  font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+  letter-spacing: 3px;
+}
+
+/* .toastimg{
+  max-width: 50px;
+} */
+
+/* header */
+.bg-nav{
+  user-select: none;
 }
 
 .logo {
   transform: scale(1.4);
 }
 
-main{
-  color: rgb(255, 107, 132);
-  background-color: rgb(24, 26, 26);
-  height: 100vh;
-  border-color: rgb(255, 107, 132);
+/* center col in body */
+.lives-skip{
+  height: 100%;
+  z-index: 5;
 }
 
-.maxheight{
-  /* max-height: 50vh; */
+.lives-border{
+  border-bottom: solid 2px #ce41b7;
+}
+
+/* card/body/info */
+.flip-card {
+  min-width: 250px;
+  width: inherit;
+  height: inherit;
+
+  position: relative;
+  transform-style: preserve-3d;
+  transition: .6s .1s;
+}
+
+.clicked {
+  transform: rotateY(180deg);
+} 
+
+.card-front,
+.card-back {
+  border-radius: 24px;
+  outline: solid white;
+  filter: drop-shadow(0 0 0.5rem #000000);
+  top: 0;
+  left: 0;
   overflow: hidden;
+  backface-visibility: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.toastimg{
-  max-width: 50px;
+.card-front {
+  transform: rotateY(0deg);
+  z-index: 2;
 }
 
+/* card back */
+.card-back {
+  transform: rotateY(180deg);
+  z-index: 1;
+  position: absolute;
+}
 
+.anime-image{
+  width: 450px;
+  height: 650px;
+  object-fit: cover;
+
+}
+
+/* footer hidden till moblie */
+.bg-bottom{
+  visibility: hidden;
+
+}
   
+
 @media (max-width: 1000px){
   
   main{
     height: fit-content;
   }
 
+  .lives-skip{
+    width: 100vw;
+  }
+
   .livesback{
-    color: rgb(24, 26, 26);
-    background-color: rgb(255, 107, 132);
     padding:  2px;
-    border-color: crimson;
-    border-width: 1px;
-    border-style: solid;
     
   }
 
-.mobilehidden{
-  max-width: 0px;
-}
+  .bg-bottom{
+    background: #fdcdcd;
+    visibility: visible
+  
+  }
 
-.mobilebutton{
-  font-size: 15px;
-}
+  .bg-text{
+    visibility: hidden;
 
-.mobilecard{
-  margin-bottom: 150px;
-}
+  }
 
+  .mobilehidden{
+    max-width: 0px;
+  }
+
+  .mobilebutton{
+    font-size: 15px;
+  }
+
+  .mobilecard{
+    margin-bottom: 150px;
+  }
+
+  .anime-image{
+    width: 250px;
+  }
+
+  .flip-card-container{
+    margin-bottom: 150px;
+  }
 }
 
 @media (max-width: 400px){

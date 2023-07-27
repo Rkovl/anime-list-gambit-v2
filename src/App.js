@@ -1,3 +1,4 @@
+//-----------------------------------------------------------------------------------------------------------IMPORTS-----------------------------------------------------------------------------
 import {useDispatch, useSelector} from 'react-redux';
 import React,{useEffect, useState} from 'react';
 // import axios from 'axios';
@@ -10,11 +11,10 @@ import Card from 'react-bootstrap/Card';
 import Col from 'react-bootstrap/Col';
 import Row from 'react-bootstrap/Row';
 import Button from 'react-bootstrap/Button';
-import Toast from 'react-bootstrap/Toast';
-import ToastContainer from 'react-bootstrap/ToastContainer';
 
 import Anime from './data/data'
 
+//-----------------------------------------------------------------------------------------------------------useEffect and State-----------------------------------------------------------------------------
 
 const App = () => {
 
@@ -29,7 +29,7 @@ const App = () => {
 
   const bestScore = useSelector((state)=> state.main.bestScore);
   // const animeData = useSelector((state)=> state.main.animeData);
-  const animeData = Anime;
+  // const animeData = Anime;
   const [score, setScore] = useState(0);
   const [lives, setLives] = useState(3);
   const [skip, setSkip] = useState(3);
@@ -44,97 +44,24 @@ const App = () => {
   useEffect(() => {
     
     console.log("why is the mal api the worst thing in the world?")
-//     // console.log(Anime, 'anime')
-    setLeft(animeData[Number(randomAnimeSelector())].node)
-    setRight(animeData[Number(randomAnimeSelector())].node)
-    
-
-// //     const gatherData = async ()=> {
-// //       try {
-// //         console.log("trying gatherData Function")
-// //         let apiUrl = [
-// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?ranking_type=tv%26limit=500%26fields=synopsis,start_date,mean,rank`,
-// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
-// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=1000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
-// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=1500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
-// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=2000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
-// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=2500%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
-// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=3000%26ranking_type=tv%26limit=500%26fields=synopsis%2Cstart_date%2Cmean,rank`,
-// //           `http://localhost:8888/.netlify/functions/helloworld?url=/anime/ranking?offset=3500%26ranking_type=tv%26limit=500%26fields=synopsis,start_date,mean,rank`
-// //         ];
-// //         let dataArr = [];
-// //         for(const url of apiUrl) {
-// //           const response = await axios.get(url, {
-// //             headers: {
-// //               'X-MAL-CLIENT-ID': ''
-// //             },
-// //           });
-// //           console.log(response, "response")
-// //           // const data = await response.json();
-// //           // console.log(data,"data")
-// //           dataArr.push(response.data.data);
-// //         }
-// //         console.log(dataArr, 'dataArr')
-// //         dispatch(mainActions.addData(dataArr))
-// // // console.log('before')
-// // //         axios.get('http://localhost:8888/.netlify/functions/helloworld?url=/anime/1',{
-// // //                       headers: {
-// // //               'X-MAL-CLIENT-ID': ''
-// // //             },
-// // //         })
-// // //         .then(response => console.log(response,'response data'))
-// // //         .catch(error => console.error('error'));
-// // // console.log('after')
-// //         // const response = async ()=> {
-// //         //   await fetch('/.netlify/functions/corsAnywhere')
-// //         //   .then(response => response.json())
-// //         // }
-// //         // console.log(response())
-
-// //       }
-// //       catch (error) {
-// //         console.log(error);
-// //         throw error;
-// //       }
-// //     }
-    
-// //     gatherData()
-
-//     // if(animeData.length <= 0 || animeData[0]===null){
-//     //   dispatch(mainActions.addData(Anime))
-
-//     //     console.log(animeData, animeLeft, animeRight)
-      
-//     // }
-//     // else{
-//     //   setLeft(animeData[Number(randomAnimeSelector())].node)
-//     //   setRight(animeData[Number(randomAnimeSelector())].node)
-//     //   console.log(animeData, animeLeft, animeRight)
-//     // }
-
-
-//     // const dataInterval = setInterval(() => {
-//     //   dispatch(mainActions.addData(Anime))
-//     // }, 1728000000)
-
-
+    setLeft(Anime[Number(randomAnimeSelector())].node)
+    setRight(Anime[Number(randomAnimeSelector())].node)
     return () => {
-
     };
-    // eslint-disable-next-line
   }, []);
 
 
+//-------------------------------------------------------------------------------------------------------FUNCTIONS-----------------------------------------------------------------------------
 
 
   const simulateNetworkRequest = ()=> {
     console.log('in timeout')
-    return new Promise((resolve) => setTimeout(resolve, 1500));
+    return new Promise((resolve) => setTimeout(resolve, 2000));
   }
 
   const newDisplay = ()=> {
-    setLeft(animeData[Number(randomAnimeSelector())].node)
-    setRight(animeData[Number(randomAnimeSelector())].node)
+    setLeft(Anime[Number(randomAnimeSelector())].node)
+    setRight(Anime[Number(randomAnimeSelector())].node)
     console.log(animeLeft, 'left', animeRight, 'right')
   }
 
@@ -153,6 +80,8 @@ const App = () => {
 
   const buttonOnClick = (button)=>{
     console.log('on button click')
+    document.getElementsByClassName("flip-card")[0].className += " clicked"
+    document.getElementsByClassName("flip-card")[1].className += " clicked"
     setLoading(true)
     switch(button){
       case 'rightRate':
@@ -252,62 +181,42 @@ const App = () => {
       setShowB(false);
       setLoading(false);
       newDisplay();
+      document.getElementById("backround").className = "bg-main-default"
+      document.getElementsByClassName("flip-card")[0].className = "flip-card"
+      document.getElementsByClassName("flip-card")[1].className = "flip-card"
     });
   }
 
   const toggleShowA = () => {
     console.log('toggleA')
     setShowA(!showA);
+    document.getElementById("backround").className = "bg-main-win"
   }
   const toggleShowB = () => {
     console.log('toggleB')
     setShowB(!showB);
+    document.getElementById("backround").className = "bg-main-lose"
   }
 
+
+//-------------------------------------------------------------------------------------------------------Toast-----------------------------------------------------------------------------
   
   return (
-    <main >
+    <main id='backround' className='bg-main-default'>
 
-      <ToastContainer className='fixed-top'>
-        <Toast show={showA} >
-          <Toast.Header>
+      <div className='bg-text'> ANIMELIST GAMBIT</div>
+{
+//-------------------------------------------------------------------------------------------------------NavBar-----------------------------------------------------------------------------
+}
 
-            <strong className="me-auto">Correct!</strong>
-            
-          </Toast.Header>
-          <Toast.Body> 
-            <img
-                        src="/yes.jpg"
-                        className="rounded me-2 toastimg"
-                        alt=""
-            />
-            Woohoo, you're winning!</Toast.Body>
-        </Toast>
-        <Toast show={showB} >
-          <Toast.Header>
-
-            <strong className="me-auto">Wrong!</strong>
-            
-          </Toast.Header>
-          
-          <Toast.Body>
-            <img
-                          src="/no.jpg"
-                          className="rounded me-2 toastimg"
-                          alt=""
-            />
-          You're loseing!</Toast.Body>
-        </Toast>
-      </ToastContainer>
-
-      <Navbar bg="dark" variant="dark" className='border-bottom border-danger'>
+      <Navbar className='bg-nav'>
         <Container>
             <Navbar.Brand>
                 <img
                 alt=""
-                src="/logo.png"
-                width="150"
-                height="150"
+                src="/logo2.png"
+                width="125"
+                height="125"
                 className="d-inline-block align-top logo"
                 />
                 
@@ -321,13 +230,21 @@ const App = () => {
         </Container>
       </Navbar>
 
+
+{
+//------------------------------------------------------------------------------------------------------Right Card------------------------------------------------------------------------------
+}
+
       {animeLeft && animeRight ?(
 
-      <Container className='h-75 text-center'>
-        <Col>
-          <Row xs={12} md={12} className="g-4 p-4">
-            <Col className='m-4 text-center h1'>
-              <Card className='bg-dark border border-4 border-danger maxheight '>
+      <Container className='h-75 text-center '>
+        <Col className='h-100'>
+          <Row xs={12} md={12} className="g-4 p-4 flip-card-container h-100">
+
+            <Col className='m-4 text-center h1 '>
+              <div className='flip-card'>
+
+              <Card className='card-front'>
                 <Card.Header>{animeLeft.title}</Card.Header>
                 <Card.Body>
                   <blockquote className="blockquote mb-0">
@@ -335,12 +252,64 @@ const App = () => {
                       {animeLeft.synopsis.slice(0,450)}...
                     </p>
                   </blockquote>
+                  <div className="d-grid gap-2">
+                    <Button 
+                     
+                    className='mobilebutton bg-button mt-3'
+                    size="lg"
+                    disabled={isLoading}
+                    onClick={!isLoading ? ()=>buttonOnClick('leftRate') : null}>
+                      {isLoading ? 'Checking…' : 'Higher Rating/Rank'}
+                        
+                    </Button>
+                    <br/><br/>
+                    <Button 
+                    variant="secondary" 
+                    className='mobilebutton bg-button'
+                    size="lg"
+                    disabled={isLoading}
+                    onClick={!isLoading ? ()=>buttonOnClick('leftRelease') : null}>
+                        {isLoading ? 'Checking…' : 'Released First'}
+                    </Button>
+                  </div>
                 </Card.Body>
               </Card>
+              <div class="card-back">
+                <Col>
+                  <img src={animeLeft.main_picture.large} className='anime-image' alt="Left Anime"></img>
+                </Col>
+              </div>
+
+              </div>
             </Col>
 
+
+{
+//-------------------------------------------------------------------------------------------------------Center Col-----------------------------------------------------------------------------
+}
+
+            <Col className='col-2 lives-skip justify-content-center pt-5'>
+              <div className='h3 livesback lives-border'>
+              Lives : {lives} 
+              </div><br/>
+              <Button 
+               
+              className='mobilebutton bg-button'
+              size="lg"
+              disabled={isLoading}
+              onClick={!isLoading ? ()=>buttonOnClick('skip') : null}>
+                      Skip {skip}/3
+              </Button>
+            </Col>
+
+{
+//-------------------------------------------------------------------------------------------------------Left Card-----------------------------------------------------------------------------
+}
+
             <Col className='m-4 text-center h1'>
-              <Card className='bg-dark border border-4 border-danger maxheight mobilecard'>
+              <div className='flip-card'>
+
+              <Card className='card-front'>
                 <Card.Header>{animeRight.title}</Card.Header>
                 <Card.Body>
                   <blockquote className="blockquote mb-0">
@@ -348,19 +317,52 @@ const App = () => {
                       {animeRight.synopsis.slice(0,450)}...
                     </p>
                   </blockquote>
+                  <div className="d-grid gap-2">
+                    <Button 
+                     
+                    className='mobilebutton bg-button mt-3'
+                    size="lg"
+                    disabled={isLoading}
+                    onClick={!isLoading ? ()=>buttonOnClick('rightRate') : null}>
+                      {isLoading ? 'Checking…' : 'Higher Rating/Rank'}
+                        
+                    </Button>
+                    <br/><br/>
+                    <Button 
+                    variant="secondary" 
+                    className='mobilebutton bg-button'
+                    size="lg"
+                    disabled={isLoading}
+                    onClick={!isLoading ? ()=>buttonOnClick('rightRelease') : null}>
+                      {isLoading ? 'Checking…' : 'Released First'}
+                        
+                    </Button>
+                  </div>
                 </Card.Body>
               </Card>
+              <div class="card-back">
+                <Col>
+                <img src={animeRight.main_picture.large} className='anime-image' alt="Right Anime"></img>
+                </Col>
+              </div>
+
+              </div>
             </Col>
+
           </Row>
 
 
-          <Row className='fixed-bottom pb-2 pt-2 pt-sm-3 pb-sm-5 bg-dark border-top border-2 border-danger'>
+{
+//-------------------------------------------------------------------------------------------------------FOOTER-----------------------------------------------------------------------------
+}
+
+          <Row className='fixed-bottom pb-2 pt-2 pt-sm-3 pb-sm-5 bg-bottom'>
             <Col className='mobilehidden'></Col>
             <Col>
               <div className="d-grid gap-2">
                 <Button 
-                variant="primary" 
-                className='mobilebutton'
+                 
+                className='mobilebutton bg-button'
                 size="lg"
                 disabled={isLoading}
                 onClick={!isLoading ? ()=>buttonOnClick('leftRate') : null}>
@@ -370,7 +372,7 @@ const App = () => {
                 <br/><br/>
                 <Button 
                 variant="secondary" 
-                className='mobilebutton'
+                className='mobilebutton bg-button'
                 size="lg"
                 disabled={isLoading}
                 onClick={!isLoading ? ()=>buttonOnClick('leftRelease') : null}>
@@ -379,25 +381,13 @@ const App = () => {
               </div>
             </Col>
 
-            <Col>
-              <div className='h3 livesback'>
-              Lives : {lives} 
-              </div><br/>
-              <Button 
-              variant="primary" 
-              className='mobilebutton'
-              size="lg"
-              disabled={isLoading}
-              onClick={!isLoading ? ()=>buttonOnClick('skip') : null}>
-                      Skip {skip}/3
-              </Button>
-            </Col>
+
 
             <Col>
               <div className="d-grid gap-2">
                 <Button 
-                variant="primary" 
-                className='mobilebutton'
+                 
+                className='mobilebutton bg-button'
                 size="lg"
                 disabled={isLoading}
                 onClick={!isLoading ? ()=>buttonOnClick('rightRate') : null}>
@@ -407,7 +397,7 @@ const App = () => {
                 <br/><br/>
                 <Button 
                 variant="secondary" 
-                className='mobilebutton'
+                className='mobilebutton bg-button'
                 size="lg"
                 disabled={isLoading}
                 onClick={!isLoading ? ()=>buttonOnClick('rightRelease') : null}>
